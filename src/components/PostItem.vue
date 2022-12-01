@@ -5,6 +5,7 @@
       <div><strong>Описание: </strong>{{ post.body }}</div>
     </div>
     <div class="post__btns">
+      <Button @click="$router.push(`/posts/${post.id}`)">Открыть</Button>
       <Button class="btn" style="align-self: flex-end" @click="$emit('remove', post)">Удалить</Button>
     </div>
   </div>
@@ -29,5 +30,10 @@ export default {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+.post__btns {
+  display: flex;
+  grid-gap: 5px;
+  margin-left: 5px;
 }
 </style>

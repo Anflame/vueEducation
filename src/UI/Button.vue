@@ -16,5 +16,6 @@
     border: 1px solid green;
     background: none;
     color: green;
+    cursor: pointer;
   }
 </style>
