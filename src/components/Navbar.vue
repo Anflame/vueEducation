@@ -5,6 +5,7 @@
       <Button class="navbar-btn" @click="$router.push('/posts')">Посты</Button>
       <Button class="navbar-btn" @click="$router.push('/about')">О нас</Button>
       <Button class="navbar-btn" @click="$router.push('/store')">Store</Button>
+      <Button class="navbar-btn" @click="$router.push('/composition')">Композиция</Button>
     </div>
   </div>
 </template>
