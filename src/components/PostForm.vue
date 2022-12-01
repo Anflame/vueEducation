@@ -1,7 +1,7 @@
 <template>
   <form @submit.prevent>
     <h4>Создание поста</h4>
-    <Input 
+    <Input
       v-model="post.title"
       class="input" 
       placeholder="Название поста" />
