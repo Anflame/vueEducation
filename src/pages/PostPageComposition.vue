@@ -1,64 +1,61 @@
+
+
 <template>
-  <div class="app">
+  <div>
     <h1>Страница с постами</h1>
-    <!-- <Input v-model="searchQuery" placeholder="Поиск..." v-focus/>
+    <Input
+      v-model="searchQuery"
+      placeholder="Поиск...."
+      v-focus
+    />
     <div class="app__btns">
-      <Button @click="showModal">Создать пост</Button>
-      <Select v-model="selectedSort" :options="sortOptions"></Select>
+        <Select
+        v-model="selectedSort"
+        :options="sortOptions" 
+        ></Select>
     </div>
-    <Modal v-model:show="modalVisible">
-      <PostForm 
-        @create="createPost"
-      />
-    </Modal>
-    <PostList 
-      :posts="sortedAndSeachedPosts"
-      @remove="removePost"
-      v-if="!isPostLoading"
-      />
-    <div v-else>Loading...</div>
-    <div v-intersection="loadMorePosts" class="observer"></div>
-    <Pages :totalPages="totalPages" :page="page" @changePage="changePage"/> -->
+    <PostList
+      :posts="sortedAndSearchedPosts"
+      v-if="!isPostsLoading"
+    />
+    <div v-else>Идет загрузка...</div>
   </div>
 </template>
 
 <script>
-
-import PostList from '@/components/PostList'
-import PostForm from '@/components/PostForm'
-import Modal from '@/UI/Modal.vue';
-import axios from 'axios';
-import Pages from '@/components/Pages.vue';
-import { ref } from 'vue';
-
+import PostForm from "@/components/PostForm";
+import PostList from "@/components/PostList";
+import { usePosts } from "@/hooks/usePosts";
+import { useSortedPosts } from "@/hooks/useSortedPosts";
+import { useSortedAndSearchedPosts } from "@/hooks/useSortedAndSearchedPosts";
 export default {
   components: {
-    PostList,
-    PostForm,
-    Modal,
-    Pages
-},
+    PostList, PostForm
+  },
   data() {
     return {
-      modalVisible: false,
+      dialogVisible: false,
       sortOptions: [
-        {
-          value: 'title', name: 'Сортировка по назаванию',
-        },
-        {
-
-          value: 'body', name: 'Сортировка по описанию'
-        }
+        {value: 'title', name: 'По названию'},
+        {value: 'body', name: 'По содержимому'},
       ]
     }
   },
   setup(props) {
-
+    const {posts, totalPages, isPostsLoading} = usePosts(10);
+    const {sortedPosts, selectedSort} = useSortedPosts(posts);
+    const {searchQuery, sortedAndSearchedPosts} = useSortedAndSearchedPosts(sortedPosts)
     return {
+      posts,
+      totalPages,
+      isPostsLoading,
+      sortedPosts,
+      selectedSort,
+      searchQuery,
+      sortedAndSearchedPosts,
     }
   }
 }
-
 </script>
 
 <style>
