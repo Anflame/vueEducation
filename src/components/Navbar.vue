@@ -5,6 +5,7 @@
       <Button class="navbar-btn" @click="$router.push('/posts')">Посты</Button>
       <Button class="navbar-btn" @click="$router.push('/about')">О нас</Button>
       <Button class="navbar-btn" @click="$router.push('/store')">Store</Button>
+      <Button class="navbar-btn" @click="$router.push('/composition')">Композиция</Button>
     </div>
   </div>
 </template>
@@ -19,8 +20,14 @@
 .navbar {
   height: 50px;
   display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  min-height: 70px;
   align-items: center;
   box-shadow: 2px 2px 4px green;
+  background-color: white;
   padding: 0 15px;
 }
 .navbar__btns {

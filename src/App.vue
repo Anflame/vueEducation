@@ -22,5 +22,6 @@ import Navbar from './components/Navbar.vue';
   
   .app {
     padding: 20px;
+    margin-top: 70px;
   }
 </style>
